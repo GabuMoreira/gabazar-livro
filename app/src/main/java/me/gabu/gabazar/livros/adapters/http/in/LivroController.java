@@ -37,7 +37,7 @@ public class LivroController {
 
     @PostMapping()
     public @ResponseBody LivroDTO post(@RequestBody LivroDTO livroDTO, @RequestHeader("token") String token) {
-        log.info("[POST] [/Livros] Request: {}", livroDTO);
+        log.info("[POST] [/livros] Request: {}", livroDTO);
 
         validaToken(token);
 
@@ -48,7 +48,7 @@ public class LivroController {
 
     @GetMapping(PATH_ID)
     public @ResponseBody LivroDTO getByID(@PathVariable("id") String id, @RequestHeader("token") String token) {
-        log.info("[GET] [/Livros/{}]", id);
+        log.info("[GET] [/livros/{}]", id);
 
         validaToken(token);
 
@@ -58,7 +58,7 @@ public class LivroController {
     @PutMapping(PATH_ID)
     public @ResponseBody LivroDTO put(@PathVariable("id") String id, @RequestHeader("token") String token,
             @RequestBody LivroDTO livroDTO) {
-        log.info("[PUT] [/Livros/{}] Request: {}", id, livroDTO);
+        log.info("[PUT] [/livros/{}] Request: {}", id, livroDTO);
 
         validaToken(token);
 
@@ -70,7 +70,7 @@ public class LivroController {
 
     @DeleteMapping(PATH_ID)
     public ResponseEntity<LivroDTO> delete(@PathVariable("id") String id, @RequestHeader("token") String token) {
-        log.info("[DELETE] [/Livros/{}]", id);
+        log.info("[DELETE] [/livros/{}]", id);
 
         validaToken(token);
 

@@ -27,7 +27,7 @@ public class ValidationServiceImpl implements ValidationService {
     @Override
     public void validate(Livro livro, ValidationEnum validation) {
 
-        Set<ConstraintViolation<Livro>> contraints = getContraints(Livro, validation);
+        Set<ConstraintViolation<Livro>> contraints = getContraints(livro, validation);
 
         if (!CollectionUtils.isEmpty(contraints))
             throw new BadRequestException(processaContraint(contraints));
@@ -37,11 +37,11 @@ public class ValidationServiceImpl implements ValidationService {
     private Set<ConstraintViolation<Livro>> getContraints(Livro livro, ValidationEnum validation) {
         switch (validation) {
         case CREATE:
-            return validator.validate(Livro, Create.class);
+            return validator.validate(livro, Create.class);
 
         case UPDATE:
         default:
-            return validator.validate(Livro, Update.class);
+            return validator.validate(livro, Update.class);
         }
     }
 
