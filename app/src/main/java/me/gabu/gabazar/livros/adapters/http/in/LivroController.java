@@ -30,8 +30,6 @@ import me.gabu.gabazar.livros.service.TokenService;
 @Api(value = "Livros", tags = "Livros")
 public class LivroController {
 
-    private static final String PATH_ID = "/{id}";
-
     private @Autowired LivroService service;
     private @Autowired TokenService tokenService;
 
@@ -46,7 +44,7 @@ public class LivroController {
         return LivroDTO.fromModel(livroCriado);
     }
 
-    @GetMapping(PATH_ID)
+    @GetMapping("/{id}")
     public @ResponseBody LivroDTO getByID(@PathVariable("id") String id, @RequestHeader("token") String token) {
         log.info("[GET] [/livros/{}]", id);
 
@@ -55,7 +53,7 @@ public class LivroController {
         return LivroDTO.fromModel(service.consultarLivro(id));
     }
 
-    @PutMapping(PATH_ID)
+    @PutMapping("/{id}")
     public @ResponseBody LivroDTO put(@PathVariable("id") String id, @RequestHeader("token") String token,
             @RequestBody LivroDTO livroDTO) {
         log.info("[PUT] [/livros/{}] Request: {}", id, livroDTO);
@@ -68,7 +66,7 @@ public class LivroController {
         return LivroDTO.fromModel(service.atualizarLivro(livro, getUsuario(token)));
     }
 
-    @DeleteMapping(PATH_ID)
+    @DeleteMapping("/{id}")
     public ResponseEntity<LivroDTO> delete(@PathVariable("id") String id, @RequestHeader("token") String token) {
         log.info("[DELETE] [/livros/{}]", id);
 
